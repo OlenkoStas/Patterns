@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 Console.WriteLine("Starting Homework 02!");
 
 new Task01SafeDelete(10).Execute(42);
@@ -24,7 +22,7 @@ class Task01SafeDelete
         Print("executed", i);
     }
 
-    private void Print(String operation, int usedParam)
+    private void Print(string operation, int usedParam)
     {
         Console.WriteLine("SafeDeleteExample " + operation + " with " + usedParam);
     }
@@ -134,5 +132,5 @@ class Task04Inline
 {
     public Task04Inline(int first) => Console.WriteLine($"Task04Inline initialized with {first}");
 
-    public void Execute(int second) => Console.WriteLine($"Task04Inline initialized with {second}");
+    public void Execute(int second) => Console.WriteLine($"Task04Inline executed with {second}");
 }
