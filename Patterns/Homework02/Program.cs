@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 Console.WriteLine("Starting Homework 02!");
 
 new Task01SafeDelete(10).Execute(42);
@@ -130,24 +132,7 @@ class Task03Extract
 /* TODO: Task 04: apply inline refactorings as specified in comments */
 class Task04Inline
 {
+    public Task04Inline(int first) => Console.WriteLine($"Task04Inline initialized with {first}");
 
-    // inline field
-    private readonly int first;
-
-    public Task04Inline(int first)
-    {
-        this.first = first;
-
-        Print("initialized", first);
-    }
-    public void Execute(int second)
-    {
-        Print("executed", second);
-    }
-
-    // inline method "print"
-    private void Print(String operation, int param)
-    {
-        Console.WriteLine("Task04Inline " + operation + " with " + param);
-    }
+    public void Execute(int second) => Console.WriteLine($"Task04Inline initialized with {second}");
 }
