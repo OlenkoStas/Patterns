@@ -51,7 +51,7 @@ class NewClassName
 /* TODO: Task 03: apply extract refactorings as specified in comments */
 class Task03Extract
 {
-
+    private const int THE_ANSWER_TO_THE_ULTIMATE_QUESTION = 42;
     private readonly int first;
 
     public Task03Extract(int first)
@@ -64,41 +64,61 @@ class Task03Extract
                 first,
                 second,
                 /* Extract to method named add */
-                first + second
+                Add(first, second)
         );
         Print("add",
-                42, /* introduce constant named THE_ANSWER_TO_THE_ULTIMATE_QUESTION */
+                THE_ANSWER_TO_THE_ULTIMATE_QUESTION, /* introduce constant named THE_ANSWER_TO_THE_ULTIMATE_QUESTION */
                 second,
                 /* Extract to method named add */
-                42 + second
+                Add(THE_ANSWER_TO_THE_ULTIMATE_QUESTION, second)
         );
 
         Print("subtract",
                 first,
                 second,
                 /* Extract to method named subtract */
-                first - second
+                Subtract(first, second)
         );
 
         Print("subtract",
-                42, /* this should automatically be refactored by the "introduce constant" change */
+                THE_ANSWER_TO_THE_ULTIMATE_QUESTION, /* this should automatically be refactored by the "introduce constant" change */
                 second,
                 /* Extract to method named subtract */
-                42 - second
+                Subtract(THE_ANSWER_TO_THE_ULTIMATE_QUESTION, second)
         );
 
         Print("multiply",
                 first,
                 second,
                 /* Extract to method named multiply */
-                first * second
+                Multiply(first, second)
         );
         Print("divide",
                 first,
                 second,
                 /* Extract to method named divide */
-                first / second
+                Divide(first, second)
         );
+    }
+
+    private int Divide(int first, int second)
+    {
+        return first / second;
+    }
+
+    private int Multiply(int first, int second)
+    {
+        return first * second;
+    }
+
+    private int Subtract(int first, int second)
+    {
+        return first - second;
+    }
+
+    private int Add(int first, int second)
+    {
+        return first + second;
     }
 
     private void Print(String name, int a, int b, int result)
