@@ -1,123 +1,136 @@
-﻿Console.WriteLine("Starting Homework 02!");
+Console.WriteLine("Starting Homework 02!");
 
-new Task01SafeDelete(10, 20).Execute(42);
-new Task02Rename(20).Call(11);
+new Task01SafeDelete(10).Execute(42);
+new NewClassName(20).Execute(11);
 new Task03Extract(20).Execute(11);
 new Task04Inline(20).Execute(11);
 
 /* TODO: Task 01: apply SafeDelete refactorings to not used code parts */
-class Task01SafeDelete {
-
+class Task01SafeDelete
+{
     private readonly int usedInput;
-    private readonly int unusedInput;
 
-    public Task01SafeDelete(int usedInput, int unusedInput){
-
+    public Task01SafeDelete(int usedInput)
+    {
         this.usedInput = usedInput;
-        this.unusedInput = unusedInput;
 
-        Print("initialized", this.usedInput, 1);
+        Print("initialized", this.usedInput);
     }
-    public void Execute(int i) { Print("executed", i, 2);}
 
-    private void Print(String operation, int usedParam, int unusedParam) {
+    public void Execute(int i)
+    {
+        Print("executed", i);
+    }
+
+    private void Print(string operation, int usedParam)
+    {
         Console.WriteLine("SafeDeleteExample " + operation + " with " + usedParam);
     }
-
-    // private void printTest(int usedParam, int unusedParam) {
-    //     Console.WriteLine("SafeDeleteExample received 0");
-    // }
 }
 
 /* TODO: Task 02: apply Rename refactorings as specified in comments */
-class Task02Rename { // rename class name also considering the name in string
+class NewClassName
+{ // rename class name also considering the name in string
 
-    private readonly int usedInput;
+    private readonly int parameter;
 
-    public Task02Rename(int input){
-            this.usedInput = input; // rename field to match parameter name
+    public NewClassName(int input)
+    {
+        parameter = input; // rename field to match parameter name
 
-            Console.WriteLine("Task02Rename initialized with " + input);
-        }
+        Console.WriteLine("NewClassName initialized with " + input);
+    }
 
-        // rename method from "call" to "execute"
-        public void Call(int i) { // rename parameter "i" to "param"
-            Console.WriteLine("Task02Rename executed with " + i);
-        }
+    // rename method from "call" to "execute"
+    public void Execute(int param)
+    { // rename parameter "i" to "param"
+        Console.WriteLine("NewClassName executed with " + param);
+    }
 }
 
 /* TODO: Task 03: apply extract refactorings as specified in comments */
-class Task03Extract {
-
+class Task03Extract
+{
+    private const int THE_ANSWER_TO_THE_ULTIMATE_QUESTION = 42;
     private readonly int first;
 
-    public Task03Extract(int first){
+    public Task03Extract(int first)
+    {
         this.first = first;
     }
-    public void Execute(int second) {
+    public void Execute(int second)
+    {
         Print("add",
                 first,
                 second,
                 /* Extract to method named add */
-                first + second
+                Add(first, second)
         );
         Print("add",
-                42, /* introduce constant named THE_ANSWER_TO_THE_ULTIMATE_QUESTION */
+                THE_ANSWER_TO_THE_ULTIMATE_QUESTION, /* introduce constant named THE_ANSWER_TO_THE_ULTIMATE_QUESTION */
                 second,
                 /* Extract to method named add */
-                42 + second
+                Add(THE_ANSWER_TO_THE_ULTIMATE_QUESTION, second)
         );
 
         Print("subtract",
                 first,
                 second,
                 /* Extract to method named subtract */
-                first - second
+                Subtract(first, second)
         );
 
         Print("subtract",
-                42, /* this should automatically be refactored by the "introduce constant" change */
+                THE_ANSWER_TO_THE_ULTIMATE_QUESTION, /* this should automatically be refactored by the "introduce constant" change */
                 second,
                 /* Extract to method named subtract */
-                42 - second
+                Subtract(THE_ANSWER_TO_THE_ULTIMATE_QUESTION, second)
         );
 
         Print("multiply",
                 first,
                 second,
                 /* Extract to method named multiply */
-                first * second
+                Multiply(first, second)
         );
         Print("divide",
                 first,
                 second,
                 /* Extract to method named divide */
-                first / second
+                Divide(first, second)
         );
     }
 
-    private void Print(String name, int a, int b, int result) {
-        Console.WriteLine(String.Join("",name,"(",a,",",b,")=",result));
+    private int Divide(int first, int second)
+    {
+        return first / second;
+    }
+
+    private int Multiply(int first, int second)
+    {
+        return first * second;
+    }
+
+    private int Subtract(int first, int second)
+    {
+        return first - second;
+    }
+
+    private int Add(int first, int second)
+    {
+        return first + second;
+    }
+
+    private void Print(String name, int a, int b, int result)
+    {
+        Console.WriteLine(String.Join("", name, "(", a, ",", b, ")=", result));
     }
 }
 
 /* TODO: Task 04: apply inline refactorings as specified in comments */
-class Task04Inline {
+class Task04Inline
+{
+    public Task04Inline(int first) => Console.WriteLine($"Task04Inline initialized with {first}");
 
-    // inline field
-    private readonly int first;
-
-    public Task04Inline(int first){
-        this.first = first;
-
-        Print("initialized", first);
-    }
-    public void Execute(int second) {
-        Print("executed", second);
-    }
-
-    // inline method "print"
-    private void Print(String operation, int param) {
-        Console.WriteLine("Task04Inline " + operation + " with " + param);
-    }
+    public void Execute(int second) => Console.WriteLine($"Task04Inline executed with {second}");
 }
