@@ -1,7 +1,7 @@
 Console.WriteLine("Starting Homework 02!");
 
 new Task01SafeDelete(10).Execute(42);
-new Task02Rename(20).Call(11);
+new NewClassName(20).Execute(11);
 new Task03Extract(20).Execute(11);
 new Task04Inline(20).Execute(11);
 
@@ -29,22 +29,22 @@ class Task01SafeDelete
 }
 
 /* TODO: Task 02: apply Rename refactorings as specified in comments */
-class Task02Rename
+class NewClassName
 { // rename class name also considering the name in string
 
-    private readonly int usedInput;
+    private readonly int parameter;
 
-    public Task02Rename(int input)
+    public NewClassName(int input)
     {
-        this.usedInput = input; // rename field to match parameter name
+        parameter = input; // rename field to match parameter name
 
-        Console.WriteLine("Task02Rename initialized with " + input);
+        Console.WriteLine("NewClassName initialized with " + input);
     }
 
     // rename method from "call" to "execute"
-    public void Call(int i)
+    public void Execute(int param)
     { // rename parameter "i" to "param"
-        Console.WriteLine("Task02Rename executed with " + i);
+        Console.WriteLine("NewClassName executed with " + param);
     }
 }
 
