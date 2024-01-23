@@ -27,33 +27,33 @@ Console.WriteLine(new Counter().Count(sentence).NumberOfWords);
 public class Counter
 {
 
-    public (int LongestWord, int NumberOfWords) Count(string[] sentence)
+    public (int LongestWord, int NumberOfWords) Count(string[] sentence)//один большой метод
     {
         int lettersInTheCurrentWord = 0;
         string currentSentence = "";
         string currentWord = "";
         int longetsWord = 0;
-        int currentNumberOfSentences = sentence.Length - 1;
-        int currentNumberOfWords = 0;
+        int i = sentence.Length - 1;//плохие имена переменных
+        int j = 0;//плохие имена переменных
         string[] splitedSentence = new string[] { };
         int maxNumberOfWords = 0;
 
     nextSentence:
 
-        if (currentNumberOfSentences < 0)
+        if (i < 0)
         {
             return (longetsWord, maxNumberOfWords);
         }
         else
         {
-            if (sentence[currentNumberOfSentences].Contains(" "))
+            if (sentence[i].Contains(" "))
             {
-                currentSentence = sentence[currentNumberOfSentences];
+                currentSentence = sentence[i];
                 goto wordSplitter;
             }
             else
             {
-                currentWord = sentence[currentNumberOfSentences];
+                currentWord = sentence[i];
                 goto letterCounter;
             }
         }
@@ -61,17 +61,17 @@ public class Counter
     wordSplitter:
         splitedSentence = currentSentence.Split(" ");
 
-        currentNumberOfWords = splitedSentence.Length - 1;
+        j = splitedSentence.Length - 1;
 
-        if (currentNumberOfWords > maxNumberOfWords)
+        if (j > maxNumberOfWords)
         {
             goto setMaxNumberOfWords;
         }
 
     nextWord:
-        if (currentNumberOfWords >= 0)
+        if (j >= 0)
         {
-            currentWord = splitedSentence[currentNumberOfWords];
+            currentWord = splitedSentence[j];
 
             if (currentWord.Length > longetsWord)
             {
@@ -79,21 +79,21 @@ public class Counter
             }
             else
             {
-                currentNumberOfWords--;
+                j--;
                 goto nextWord;
             }
         }
-        currentNumberOfSentences--;
+        i--;
         goto nextSentence;
 
 
     setMaxNumberOfWords:
-        maxNumberOfWords = currentNumberOfWords + 1;
+        maxNumberOfWords = j + 1;
         goto nextWord;
 
     setLongestWord:
         longetsWord = currentWord.Length;
-        currentNumberOfWords--;
+        j--;
         goto nextWord;
 
     letterCounter:
@@ -104,7 +104,7 @@ public class Counter
             goto setLongestWord;
         }
 
-        currentNumberOfSentences--;
+        i--;
         goto nextSentence;
     }
 }
